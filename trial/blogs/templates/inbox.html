@@ -1,0 +1,18 @@
+<html>
+<head>
+<title>Inbox</title>
+<a href="/logout">Log Out</a>
+</head>
+<body>
+{% if messages|length == 0 %}
+<p>You have no messages</p>
+{%else%}
+{%for message in messages%}
+<p><a href="/user/{{message.user_id}}">{{message.from_name}}</a> : {{message.message_text}}</p>
+<a href="/deletemessage/{{message.id}}">delete</a>
+<a href="/sendmessage/{{message.user_id}}">Send message back</a>
+<br>
+{%endfor%}
+{%endif%}
+</body>
+</html>

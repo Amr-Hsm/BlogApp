@@ -1,0 +1,27 @@
+<html>
+<head>
+<title>Post</title>
+<a href="/logout">Log Out</a><br>
+</head>
+<body>
+		<a href = "/bloglist/{{post.blog_id}}"> {{ post.post_text}}</a>
+	{%if error %}
+
+
+	<p> There is no comments on that post , you can add one</p>
+	{% else %}
+
+    {% for comment in comments%}
+    <p><a href="/user/{{comment.user_id}}"> {{comment.user_name}}</a> : {{ comment.comment_text}}</p>
+
+    {% if not flag or comment.user_id == user_id %}
+    <a href="/{{comment.id}}/editcomment"> edit</a>
+    <a href="/{{comment.id}}/deletecomment">delete</a>
+    {% endif %}
+    {%endfor%}
+
+{%endif%}
+<br>
+<a href="/{{post.id}}/addcomment"> Add Comment</a>
+</body>
+</html>

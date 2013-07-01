@@ -1,0 +1,24 @@
+<html>
+<head>
+<title>Create a new Blog</title>
+<a href="/logout">Log Out</a><br>
+</head>
+<body>
+	{% if error %}
+	<p>Please enter a name for your blog</p>
+	
+	{% endif %}
+	
+	<form method = "post" action = "/createblogpage">
+        {% csrf_token %}
+       
+		<p>Blog Name</p>
+		<input type = "text" name = "blog_name">
+		<input type = "submit" value = "Create your own Blog">
+         
+	</form>
+	
+
+</body>
+
+</html>

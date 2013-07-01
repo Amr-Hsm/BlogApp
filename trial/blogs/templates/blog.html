@@ -1,0 +1,70 @@
+<html>
+<head>
+<title> {{user_name}}'s Blog</title>
+<a href="/logout">Log Out</a>
+{%if not error%}
+<a href="/inbox">Inbox</a>
+{%else%}
+<a href="/sendmessage/{{user_id}}">Send Message</a>
+{%endif%}
+</head>
+<body>
+<h1>The number of views is {{ view_num }}</h1>
+{%if error%}
+{%if not has_blog%}
+{% if flag %}
+<a href="/follow/{{blog_id}}"> Follow </a>
+{%else%}
+<a href="/unfollow/{{blog_id}}"> UnFollow </a>
+ {% endif %}
+ {%endif%}
+{%endif%}
+{% if not error %}
+
+
+
+{%if follow_list|length == 0%}
+<p> you are not following anyone</p>
+{%else%}
+<p>The users that you're following :</p>
+{% for follow in follow_list%}
+<a href="/user/{{follow.following_id}}">{{follow.following_name}}</a>
+{%endfor%}
+{%endif%}
+{% endif %}
+
+{% if posts|length == 0%}
+
+<p>There are no posts in the Blog</p>
+{% if not error %}
+<a href="/posts/add"> Add Post</a>
+{%endif%}
+{%else%}
+{% if not error %}
+<a href="/posts/add"> Add Post</a>
+{%endif%}
+ {% for post in posts%}
+
+ <ul>
+<li name = "amr"> {{post.post_text}}</li>
+ </ul>
+<a href="posts/{{ post.id }}"> Comments</a>
+<a href="https://twitter.com/share" class="twitter-share-button" data-lang="en" data-text ="{{post.post_text}}">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<a name="fb_share" type="button_count" share_url = "http://127.0.0.1:8000/bloglist/posts/{{post.id}}" href="http://www.facebook.com/sharer.php?u={INSERT ENCODED share_url HERE}&amp;src=sp" style="text-decoration: none; ">Share</a>
+<script src="http://static.ak.fbcdn.net/connect.php/js/FB.Share" type="text/javascript"></script>
+<a href="https://plus.google.com/share?url={http://127.0.0.1:8000/bloglist/posts/{{post.id}}}" onclick="javascript:window.open(this.href,'', 'menubar=no,toolbar=no,resizable=yes,scrollbars=yes,height=600,width=600');return false;"><img src="https://www.gstatic.com/images/icons/gplus-32.png" alt="Share on Google+"/></a>
+{% if not error %}
+ <a href="/{{ post.id }}/editpost"> edit</a>
+<a href="/{{ post.id }}/deletepost"> delete </a>
+{%endif%}
+
+ {% endfor %}
+ {%endif%}
+ <br>
+ <a href="/bloglist"> View All Blogs</a>
+
+</body>
+
+
+</html>

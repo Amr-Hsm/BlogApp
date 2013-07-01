@@ -1,0 +1,15 @@
+<html>
+<head><title>Send Message</title> <a href="/logout">Log Out</a></head>
+
+<body>
+	{% if error%}
+	<p>Please Enter a message</p>
+	{%endif%}
+	<p>Type your message here.</p>
+<form method = "post" action ="/{{user_id}}/sendmessage">
+	{%csrf_token%}
+<input type = "text" name = "message_text">
+<input type = "submit" value = "Send">
+</form>
+</body>
+</html>

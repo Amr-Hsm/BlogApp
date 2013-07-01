@@ -1,0 +1,14 @@
+<html>
+<head><title>Edit Post</title><a href="/logout">Log Out</a><br></head>
+<body>
+<p>Enter your text here</p>
+ <form method = "post" action = "/editpost/{{post_id}}">
+ 	{% csrf_token %}
+<input type = "text"  name = "post_text" value = "{{post_text}}">
+<input type = "submit" value = "Edit Post"> 
+ </form>
+
+</body>
+
+
+</html>

@@ -1,0 +1,40 @@
+<html>
+   <head>
+   	<title> Blog Lists</title>
+    <a href="/logout">Log Out</a><br>
+    <a href="/inbox">Inbox</a>
+     </head>
+
+   	<body>
+         {% if blogs|length == 0 %}
+         <p> There is no blogs created yet. Even you didn't create one, please create a blog</p>
+          <a href="/createblog"> Create Blog </a>
+        
+         {%else%}
+         {% if flag%}
+         <p> You have no Blog , please create one</p>
+   		  <a href="/createblog"> Create Blog </a>
+        {%else%}
+        <a href="/bloglist/{{blogobj.id}}">My Blog</a>
+   		 {% endif %}
+       <p>Other Blogs:</p>
+   		{%for blog in blogs%}
+
+   		<ul>
+        {%if not blog.id == blogobj.id %}
+   			<li><a href="/bloglist/{{ blog.id }}"> {{ blog.blog_name}}</a></li>
+        {%endif%}
+
+   		</ul>
+   		 {% endfor %}
+       
+
+          {% endif %}
+
+
+
+   	</body>
+
+  
+
+</html>

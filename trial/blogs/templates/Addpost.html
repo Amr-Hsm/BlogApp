@@ -1,0 +1,17 @@
+<html>
+<head><title>Add Post</title> <a href="/logout">Log Out</a><br></head>
+<body>
+	{%if error %}
+	<p>Please type a Post</p>
+	{% endif%}
+<p>Enter your text here</p>
+ <form method = "post" action = "/addpost">
+ 	{% csrf_token %}
+<input type = "text"  name = "post_text">
+<input type = "submit" value = "Add Post"> 
+ </form>
+
+</body>
+
+
+</html>

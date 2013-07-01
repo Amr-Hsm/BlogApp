@@ -1,0 +1,25 @@
+<html>
+
+<head>
+	<title> Login</title>
+	
+</head>
+<body>
+	<h1>Log in</h1>
+{% if error%}
+<p> Incorrect email or password</p>
+{% endif%}
+<form action = "/signin" method = "post">
+	{% csrf_token %}
+
+<p>Email</p>
+<input type = "text" name = "email">
+<p>Password</p>
+<input type = "password" name = "password">
+
+<input type = "submit" value = "Sign in"> or <a href="/signup">Sign up</a>
+</form>
+
+</body>
+
+</html>
