@@ -1,6 +1,8 @@
 <html>
 <head>
 <title>Post</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src = "{{ STATIC_URL }}/delete.js"></script>
 <a href="/logout">Log Out</a><br>
 </head>
 <body>
@@ -16,7 +18,22 @@
 
     {% if not flag or comment.user_id == user_id %}
     <a href="/{{comment.id}}/editcomment"> edit</a>
-    <a href="/{{comment.id}}/deletecomment">delete</a>
+    <a href="#" id = "{{comment.id}}" class = "delete">delete</a>
+
+    <div id="x{{comment.id}}" class="modal-hide-fade">
+    <div class="modal-header">
+      <a href="#" class="choice">&times;</a>
+      <h3>Delete Confirmation</h3>
+    </div>
+    <div class="modal-body">
+      <p>You are about to delete a comment, this procedure is irreversible.</p>
+      <p>Do you want to proceed?</p>
+    </div>
+    <div class="modal-footer">
+      <a href="/{{comment.id}}/deletecomment" class = "choice">Yes</a>
+      <a href="#" class = "choice">No</a>
+    </div>
+</div>
     {% endif %}
     {%endfor%}
 
